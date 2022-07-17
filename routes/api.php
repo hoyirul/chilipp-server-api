@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\CityController;
 use App\Http\Controllers\api\DatasetController;
+use App\Http\Controllers\api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,9 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('city', CityController::class);
-Route::get('/count', [CityController::class, 'count']);
-
 Route::controller(DatasetController::class)->group(function(){
     Route::prefix('dataset')->group(function(){
         Route::get('/', 'index');
@@ -31,4 +29,11 @@ Route::controller(DatasetController::class)->group(function(){
         Route::get('sort_harga/{berita}', 'sort_harga');
         Route::get('probabilitas_kelas', 'probabilitas_kelas');
     });
+});
+
+Route::controller(UserController::class)->group(function(){
+    Route::get('/user', 'index');
+    Route::get('/user/{id}/show', 'show');
+    Route::post('/login', 'auth');
+    Route::post('/register', 'register')->name('register');
 });

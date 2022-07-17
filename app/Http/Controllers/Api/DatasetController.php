@@ -11,8 +11,8 @@ class DatasetController extends Controller
     public function index(){
         $json = Dataset::with('user')->get();
         return response()->json([
-            $json, 200
-        ]);
+            $json
+        ], 200);
     }
 
     public function sort_permintaan($berita){
