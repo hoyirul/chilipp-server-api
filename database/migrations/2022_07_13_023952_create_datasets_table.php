@@ -20,7 +20,7 @@ class CreateDatasetsTable extends Migration
             $table->float('permintaan');
             $table->float('ketersediaan');
             $table->float('harga');
-            $table->enum('berita', ['naik', 'tetap', 'turun']);
+            $table->enum('berita', ['naik', 'tetap', 'turun', 'none'])->default('none');
             $table->timestamps();
         });
     }
