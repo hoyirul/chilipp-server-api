@@ -28,6 +28,7 @@ Route::controller(DatasetController::class)->group(function(){
         Route::get('sort_ketersediaan/{berita}', 'sort_ketersediaan');
         Route::get('sort_harga/{berita}', 'sort_harga');
         Route::get('probabilitas_kelas', 'probabilitas_kelas');
+        Route::get('sampel_data', 'sampel_data');
     });
 });
 

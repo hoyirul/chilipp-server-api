@@ -10,7 +10,8 @@ class DatasetController extends Controller
 {
     public function index(){
         // $json = Dataset::where('tanggal', '>=','2021-08-01')->where('tanggal', '<=','2021-08-30')->get();
-        $json = Dataset::all();
+        $except = Dataset::orderBy('id', 'DESC')->first();
+        $json = Dataset::where('id', '!=', $except->id)->get();
         return response()->json([
             $json
         ], 200);
@@ -18,7 +19,8 @@ class DatasetController extends Controller
 
     public function sort_permintaan($berita){
         $power = Dataset::selectRaw('DISTINCT permintaan')->where('berita', $berita)->get();
-        $permintaan = Dataset::selectRaw('COUNT(DISTINCT permintaan) as count_data, SUM(DISTINCT permintaan) as sum_data')->where('berita', $berita)->first();
+        $except = Dataset::orderBy('id', 'DESC')->first();
+        $permintaan = Dataset::selectRaw('COUNT(DISTINCT permintaan) as count_data, SUM(DISTINCT permintaan) as sum_data')->where('berita', $berita)->where('id', '!=', $except->id)->first();
 
         $count = $permintaan->count_data;
         $sum = $permintaan->sum_data;
@@ -46,7 +48,8 @@ class DatasetController extends Controller
 
     public function sort_ketersediaan($berita){
         $power = Dataset::selectRaw('DISTINCT ketersediaan')->where('berita', $berita)->get();
-        $ketersediaan = Dataset::selectRaw('COUNT(DISTINCT ketersediaan) as count_data, SUM(DISTINCT ketersediaan) as sum_data')->where('berita', $berita)->first();
+        $except = Dataset::orderBy('id', 'DESC')->first();
+        $ketersediaan = Dataset::selectRaw('COUNT(DISTINCT ketersediaan) as count_data, SUM(DISTINCT ketersediaan) as sum_data')->where('berita', $berita)->where('id', '!=', $except->id)->first();
 
         $count = $ketersediaan->count_data;
         $sum = $ketersediaan->sum_data;
@@ -74,7 +77,8 @@ class DatasetController extends Controller
 
     public function sort_harga($berita){
         $power = Dataset::selectRaw('DISTINCT harga')->where('berita', $berita)->get();
-        $harga = Dataset::selectRaw('COUNT(DISTINCT harga) as count_data, SUM(DISTINCT harga) as sum_data')->where('berita', $berita)->first();
+        $except = Dataset::orderBy('id', 'DESC')->first();
+        $harga = Dataset::selectRaw('COUNT(DISTINCT harga) as count_data, SUM(DISTINCT harga) as sum_data')->where('berita', $berita)->where('id', '!=', $except->id)->first();
 
         $count = $harga->count_data;
         $sum = $harga->sum_data;
@@ -113,5 +117,12 @@ class DatasetController extends Controller
         ];
 
         return response()->json($data, 200);
+    }
+
+    public function sampel_data(){
+        $json = Dataset::orderBy('id', 'DESC')->first();
+        return response()->json([
+            $json
+        ], 200);
     }
 }
