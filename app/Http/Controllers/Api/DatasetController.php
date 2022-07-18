@@ -9,10 +9,11 @@ use Illuminate\Http\Request;
 class DatasetController extends Controller
 {
     public function index(){
-        $json = Dataset::with('user')->get();
+        // $json = Dataset::where('tanggal', '>=','2021-08-01')->where('tanggal', '<=','2021-08-30')->get();
+        $json = Dataset::all();
         return response()->json([
-            $json, 200
-        ]);
+            $json
+        ], 200);
     }
 
     public function sort_permintaan($berita){
