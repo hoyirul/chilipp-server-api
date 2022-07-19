@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Dataset;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -36,7 +37,6 @@ class UserController extends Controller
             'nama' => $request->nama,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'alamat' => $request->alamat,
             'role' => $request->role,
         ]);
 
@@ -53,5 +53,18 @@ class UserController extends Controller
     public function show($id){
         $json = User::where('id', $id)->first();
         return response()->json($json, 200);
+    }
+
+    public function stop_loss(Request $request, $id){
+        $request->validate([
+            'stop_loss' => 'required',
+        ]);
+        
+        $dataset = Dataset::orderBy('id', 'DESC')->first();
+        
+        User::where('id', $id)->update([
+            'stop_loss' => $request->stop_loss,
+            'harga_awal' => $dataset->harga,
+        ]);
     }
 }
