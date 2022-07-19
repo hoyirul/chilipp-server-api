@@ -32,6 +32,8 @@ Route::controller(DatasetController::class)->group(function(){
     });
 });
 
+Route::post('dataset/{id}/berita', [DatasetController::class, 'update']);
+
 Route::controller(UserController::class)->group(function(){
     Route::get('/user', 'index');
     Route::get('/user/{id}/show', 'show');

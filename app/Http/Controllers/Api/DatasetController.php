@@ -120,9 +120,28 @@ class DatasetController extends Controller
     }
 
     public function sampel_data(){
-        $json = Dataset::orderBy('id', 'DESC')->first();
-        return response()->json([
-            $json
-        ], 200);
+        $row = Dataset::orderBy('id', 'DESC')->first();
+        $json = [
+            'id' => $row->id,
+            'user_id' => $row->user_id,
+            'tanggal' => $row->tanggal,
+            'permintaan' => $row->permintaan,
+            'ketersediaan' => $row->ketersediaan,
+            'harga' => $row->harga,
+            'berita' => $row->berita,
+        ];
+
+        return response()->json($json, 200);
+    }
+
+    public function update(Request $request, $id){
+        // dd('ok');
+        $request->validate([
+            'berita' => 'required'
+        ]);
+
+        $json = Dataset::where('id', $id)->update($request->all());
+        
+        return response()->json(['status' => 'success'], 200);
     }
 }

@@ -52,8 +52,6 @@ class UserController extends Controller
 
     public function show($id){
         $json = User::where('id', $id)->first();
-        return response()->json([
-            $json
-        ], 200);
+        return response()->json($json, 200);
     }
 }
