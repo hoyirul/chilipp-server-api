@@ -49,7 +49,7 @@
 
             <div class="form-group">
               <label for="role">Role</label>
-              <input type="text" placeholder="Role" readonly class="form-control fs-normal form-spacer-20x15 @error('role') is-invalid @enderror" id="role" name="role" data-toggle="tooltip" data-placement="right"  value="{{ 'admin' }}">
+              <input type="text" placeholder="Role" readonly class="form-control fs-normal form-spacer-20x15 @error('role') is-invalid @enderror" id="role" name="role" data-toggle="tooltip" data-placement="right"  value="{{ Auth::user()->role }}">
               @error('role')
                 <div class="invalid-feedback ml-1">{{ $message }}</div>
               @enderror

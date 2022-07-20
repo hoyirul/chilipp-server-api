@@ -48,7 +48,7 @@
     </li>
 
     <li class="nav-item active border-top border-bottom">  
-      <a class="nav-link px-5 w-100" href="/u/book">
+      <a class="nav-link px-5 w-100" href="/u/news">
         <i class="fas fa-fw fa-comment"></i>
         <span>Berita</span>
       </a>
@@ -63,7 +63,7 @@
     </li>
 
     <li class="nav-item active border-bottom">  
-      <a class="nav-link px-5 w-100" href="/u/transaction">
+      <a class="nav-link px-5 w-100" href="/u/dataset/create">
         <i class="fas fa-fw fa-money-check"></i>
         <span>Tambah Dataset</span>
       </a>

@@ -12,8 +12,8 @@
       <p class="mb-4">Hati-hati dalam input data. Beberapa data tidak dapat diubah setelah diinput!.</p>
     </div>
     <div class="col-md-6 d-flex justify-content-end">
-      {{-- <a href="/u/author" class="btn btn-primary mx-2 py-2 shadow-sm fs-normal align-self-center px-3 mt-n3">
-         <span class="fas fa-arrow-left"></span> Kembali</a> --}}
+      <a href="/u/news" class="btn btn-primary mx-2 py-2 shadow-sm fs-normal align-self-center px-3 mt-n3">
+         <span class="fas fa-arrow-left"></span> Kembali</a>
     </div>
   </div>
 
@@ -34,8 +34,9 @@
          <h6 class="m-0 font-weight-bold color-primary">Data {{ $title }}</h6>
       </div>
       <div class="card-body container-fluid">
-         <form method="post" action="/u/dataset">
+         <form method="post" action="/u/news/{{ $news->id }}">
           @csrf
+          @method('PUT')
           <div class="row">
             <div class="col-xl-6 mr-auto">
               <div class="form-group">
@@ -46,15 +47,8 @@
                 @enderror
               </div>
               <div class="form-group">
-                <label for="permintaan">Permintaan</label>
-                <input type="number" required placeholder="Permintaan" class="form-control fs-normal form-spacer-20x15 @error('permintaan') is-invalid @enderror" id="permintaan" name="permintaan" data-toggle="tooltip" data-placement="right" value="{{ old('permintaan') }}">
-                @error('permintaan')
-                  <div class="invalid-feedback ml-1">{{ $message }}</div>
-                @enderror
-              </div>
-              <div class="form-group">
                 <label for="ketersediaan">Ketersediaan</label>
-                <input type="number" required placeholder="Ketersediaan" class="form-control fs-normal form-spacer-20x15 @error('ketersediaan') is-invalid @enderror" id="ketersediaan" name="ketersediaan" data-toggle="tooltip" data-placement="right" value="{{ old('ketersediaan') }}">
+                <input type="number" required placeholder="Ketersediaan" class="form-control fs-normal form-spacer-20x15 @error('ketersediaan') is-invalid @enderror" id="ketersediaan" name="ketersediaan" data-toggle="tooltip" data-placement="right" value="{{ $news->ketersediaan }}">
                 @error('ketersediaan')
                   <div class="invalid-feedback ml-1">{{ $message }}</div>
                 @enderror
@@ -71,19 +65,12 @@
               
               <div class="form-group">
                 <label for="harga">Harga</label>
-                <input type="number" required placeholder="Harga" class="form-control fs-normal form-spacer-20x15 @error('harga') is-invalid @enderror" id="harga" name="harga" data-toggle="tooltip" data-placement="right" value="{{ old('harga') }}">
+                <input type="number" required placeholder="Harga" class="form-control fs-normal form-spacer-20x15 @error('harga') is-invalid @enderror" id="harga" name="harga" data-toggle="tooltip" data-placement="right" value="{{ $news->harga }}">
                 @error('harga')
                   <div class="invalid-feedback ml-1">{{ $message }}</div>
                 @enderror
               </div>
   
-              <div class="form-group">
-                <label for="tanggal">Tanggal</label>
-                <input type="text" readonly placeholder="Tanggal" class="form-control fs-normal form-spacer-20x15 @error('tanggal') is-invalid @enderror" id="tanggal" name="tanggal" data-toggle="tooltip" data-placement="right" value="{{ $now }}">
-                @error('tanggal')
-                  <div class="invalid-feedback ml-1">{{ $message }}</div>
-                @enderror
-              </div>
             </div>
             
           </div>
