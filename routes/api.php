@@ -36,6 +36,8 @@ Route::post('dataset/{id}/berita', [DatasetController::class, 'update']);
 
 Route::controller(UserController::class)->group(function(){
     Route::get('/user', 'index');
+    Route::get('/user/{id}/password', 'update_password');
+    Route::get('/user/{id}/profile', 'update_profile');
     Route::get('/user/{id}/show', 'show');
     Route::post('/stop_loss/{id}', 'stop_loss');
     Route::post('/login', 'auth');

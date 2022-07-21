@@ -66,5 +66,36 @@ class UserController extends Controller
             'stop_loss' => $request->stop_loss,
             'harga_awal' => $dataset->harga,
         ]);
+
+        return response()->json(['status' => 'success'], 200);
+    }
+
+    public function update_profile(Request $request, $id){
+        $request->validate([
+            'nama' => 'required|string|max:50',
+            'alamat' => 'required|string',
+        ]);
+
+        User::where('id', $id)
+            ->update([
+                'nama' => $request->nama,
+                'alamat' => $request->alamat,
+            ]);
+        
+        
+        return response()->json(['status' => 'success'], 200);
+    }
+
+    public function update_password(Request $request, $id){
+        $request->validate([
+            'password' => 'required|min:6',
+            'password_confirmation' => 'same:password|min:6'
+        ]);
+        
+        User::where('id', $id)->update([
+            'password' => Hash::make($request->password)
+        ]);
+        
+        return response()->json(['status' => 'success'], 200);
     }
 }
