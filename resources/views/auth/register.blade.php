@@ -56,7 +56,6 @@
                       <label for="password_confirmation">Password Confirmation</label>
                       <select id="role" name="role" placeholder="Nama Bayi" class="form-control-select rad-10 fs-normal form-spacer-10x8 @error('role') is-invalid @enderror" data-toggle="tooltip" data-placement="right">
                         <option value="as" disabled selected>Pilih role</option>
-                          <option value="admin">Admin</option>
                           <option value="pasar">Pasar</option>
                           <option value="pengepul">Pengepul</option>
                           <option value="petani">Petani</option>
@@ -83,7 +82,8 @@
                           {{ __('Register') }}
                       </button>
                     </div>
-                    <div class="p-3"></div>
+                    <p class="fs-small text-danger mt-3 text-center">Untuk role admin silahkan menguhubungi developer! <span class="text-primary">support@chilipp.com</span></p>
+                    {{-- <div class="p-3"></div> --}}
                   </form>
                 {{-- </div> --}}
               </div>

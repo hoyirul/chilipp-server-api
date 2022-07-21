@@ -1,19 +1,10 @@
 <?php
 
-use App\Http\Controllers\Admin\AuthorController;
-use App\Http\Controllers\Admin\BookController;
 use App\Http\Controllers\Admin\DatasetController as AdminDatasetController;
-use App\Http\Controllers\Admin\GenreController;
-use App\Http\Controllers\Admin\HomeController;
-use App\Http\Controllers\Admin\PublisherController;
-use App\Http\Controllers\Admin\TransactionController as AdminTransactionController;
-use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\HomeController as AdminHomeController;
+use App\Http\Controllers\Admin\NewsController as AdminNewsController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\PageController;
-use App\Http\Controllers\User\BookController as UserBookController;
-use App\Http\Controllers\User\CartController as UserCartController;
-use App\Http\Controllers\User\HomeController as UserHomeController;
-use App\Http\Controllers\User\SettingController as UserSettingController;
-use App\Http\Controllers\User\TransactionController as UserTransactionController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -33,7 +24,7 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-// Route::get('/', [UserBookController::class, 'index']);
+Route::get('/', [PageController::class, 'index']);
 // Route::get('/book', [UserBookController::class, 'index']);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -41,14 +32,14 @@ Auth::routes();
 Route::middleware(['auth', 'role'])->group(function(){
     
     Route::prefix('/u')->group(function(){
-        Route::controller(HomeController::class)->group(function(){
+        Route::controller(AdminHomeController::class)->group(function(){
             Route::get('dashboard', 'index');
             Route::put('update_profile', 'update_profile');
             Route::get('change_password', 'change_password');
             Route::put('update_password', 'update_password');
         });
 
-        Route::controller(UserController::class)->group(function(){
+        Route::controller(AdminUserController::class)->group(function(){
             // Route::get('add_profile', 'add');
             
             Route::get('admins', 'get_admin');
@@ -71,6 +62,10 @@ Route::middleware(['auth', 'role'])->group(function(){
             Route::get('/dataset', 'index');
             Route::get('/dataset/create', 'create');
             Route::post('/dataset', 'store');
+            Route::get('/dataset/{id}/edit', 'edit');
+            Route::put('/dataset/{id}', 'update');
         });
+
+        Route::resource('news', AdminNewsController::class);
     });
 });

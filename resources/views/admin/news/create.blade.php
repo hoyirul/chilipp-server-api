@@ -12,8 +12,8 @@
       <p class="mb-4">Hati-hati dalam input data. Beberapa data tidak dapat diubah setelah diinput!.</p>
     </div>
     <div class="col-md-6 d-flex justify-content-end">
-      {{-- <a href="/u/author" class="btn btn-primary mx-2 py-2 shadow-sm fs-normal align-self-center px-3 mt-n3">
-         <span class="fas fa-arrow-left"></span> Kembali</a> --}}
+      <a href="/u/news" class="btn btn-primary mx-2 py-2 shadow-sm fs-normal align-self-center px-3 mt-n3">
+         <span class="fas fa-arrow-left"></span> Kembali</a>
     </div>
   </div>
 
@@ -34,7 +34,7 @@
          <h6 class="m-0 font-weight-bold color-primary">Data {{ $title }}</h6>
       </div>
       <div class="card-body container-fluid">
-         <form method="post" action="/u/dataset">
+         <form method="post" action="/u/news">
           @csrf
           <div class="row">
             <div class="col-xl-6 mr-auto">
@@ -42,13 +42,6 @@
                 <label for="email">Email</label>
                 <input type="text" placeholder="Email" class="form-control fs-normal form-spacer-20x15 @error('email') is-invalid @enderror" id="email" name="email" data-toggle="tooltip" data-placement="right" value="{{ Auth::user()->email }}" readonly>
                 @error('email')
-                  <div class="invalid-feedback ml-1">{{ $message }}</div>
-                @enderror
-              </div>
-              <div class="form-group">
-                <label for="permintaan">Permintaan</label>
-                <input type="number" required placeholder="Permintaan" class="form-control fs-normal form-spacer-20x15 @error('permintaan') is-invalid @enderror" id="permintaan" name="permintaan" data-toggle="tooltip" data-placement="right" value="{{ old('permintaan') }}">
-                @error('permintaan')
                   <div class="invalid-feedback ml-1">{{ $message }}</div>
                 @enderror
               </div>
@@ -77,13 +70,6 @@
                 @enderror
               </div>
   
-              <div class="form-group">
-                <label for="tanggal">Tanggal</label>
-                <input type="text" readonly placeholder="Tanggal" class="form-control fs-normal form-spacer-20x15 @error('tanggal') is-invalid @enderror" id="tanggal" name="tanggal" data-toggle="tooltip" data-placement="right" value="{{ $now }}">
-                @error('tanggal')
-                  <div class="invalid-feedback ml-1">{{ $message }}</div>
-                @enderror
-              </div>
             </div>
             
           </div>
