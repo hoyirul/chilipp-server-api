@@ -29,6 +29,7 @@ Route::controller(DatasetController::class)->group(function(){
         Route::get('sort_harga/{berita}', 'sort_harga');
         Route::get('probabilitas_kelas', 'probabilitas_kelas');
         Route::get('sampel_data', 'sampel_data');
+        Route::get('ketersediaan', 'ketersediaan');
     });
 });
 
@@ -36,8 +37,8 @@ Route::post('dataset/{id}/berita', [DatasetController::class, 'update']);
 
 Route::controller(UserController::class)->group(function(){
     Route::get('/user', 'index');
-    Route::get('/user/{id}/password', 'update_password');
-    Route::get('/user/{id}/profile', 'update_profile');
+    Route::post('/user/{id}/password', 'update_password');
+    Route::post('/user/{id}/profile', 'update_profile');
     Route::get('/user/{id}/show', 'show');
     Route::post('/stop_loss/{id}', 'stop_loss');
     Route::post('/login', 'auth');

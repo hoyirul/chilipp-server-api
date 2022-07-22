@@ -67,7 +67,7 @@ class UserController extends Controller
             'harga_awal' => $dataset->harga,
         ]);
 
-        return response()->json(['status' => 'success'], 200);
+        return response()->json(['stop_loss' => $request->stop_loss, 'harga_awal' => $dataset->harga], 200);
     }
 
     public function update_profile(Request $request, $id){
