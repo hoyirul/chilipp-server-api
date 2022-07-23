@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\Api\CityController;
 use App\Http\Controllers\api\DatasetController;
+use App\Http\Controllers\Api\PredictController;
 use App\Http\Controllers\api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +29,14 @@ Route::controller(DatasetController::class)->group(function(){
         Route::get('sort_harga/{berita}', 'sort_harga');
         Route::get('probabilitas_kelas', 'probabilitas_kelas');
         Route::get('sampel_data', 'sampel_data');
+    });
+});
+
+// Ini untuk halaman prediksi dan grafik
+Route::controller(PredictController::class)->group(function(){
+    Route::prefix('predict')->group(function(){
+        Route::get('news', 'news_predict');
+        Route::get('price', 'price_predict');
     });
 });
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use App\Models\Dataset;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class DatasetController extends Controller
 {
@@ -143,5 +144,18 @@ class DatasetController extends Controller
         $json = Dataset::where('id', $id)->update($request->all());
         
         return response()->json(['status' => 'success'], 200);
+    }
+
+    public function ketersediaan(){
+        $date = Carbon::now();
+        $ketersediaan = Dataset::selectRaw('COUNT(DISTINCT ketersediaan) as count_data, SUM(DISTINCT ketersediaan) as sum_data')->where('tanggal', $date->format('Y-m-d'))->first();
+
+        $data = [
+            'tanggal' => $date->format('Y-m-d'), 
+            'jumlah_data' => $ketersediaan->count_data, 
+            'total' => $ketersediaan->sum_data,
+        ];
+
+        return response()->json($data, 200);
     }
 }
