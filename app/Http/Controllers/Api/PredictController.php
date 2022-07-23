@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Dataset;
 use Illuminate\Http\Request;
 use Phpml\Regression\SVR;
-use Phpml\Classification\SVC;
 use Phpml\SupportVectorMachine\Kernel;
 
 class PredictController extends Controller
