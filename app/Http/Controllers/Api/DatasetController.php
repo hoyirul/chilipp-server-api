@@ -13,9 +13,7 @@ class DatasetController extends Controller
         // $json = Dataset::where('tanggal', '>=','2021-08-01')->where('tanggal', '<=','2021-08-30')->get();
         $except = Dataset::orderBy('id', 'DESC')->first();
         $json = Dataset::where('id', '!=', $except->id)->get();
-        return response()->json([
-            $json
-        ], 200);
+        return response()->json($json, 200);
     }
 
     public function sort_permintaan($berita){
