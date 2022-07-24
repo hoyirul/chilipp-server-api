@@ -153,7 +153,7 @@ class DatasetController extends Controller
         $data = [
             'tanggal' => $date->format('Y-m-d'), 
             'jumlah_data' => $ketersediaan->count_data, 
-            'total' => $ketersediaan->sum_data,
+            'total' => ($ketersediaan->sum_data == null) ? 0 : $ketersediaan->sum_data,
         ];
 
         return response()->json($data, 200);
