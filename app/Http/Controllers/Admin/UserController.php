@@ -11,18 +11,6 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function add()
-    {
-        User::create([
-            'user_id' => auth()->user()->id,
-            'name' => auth()->user()->email,
-            'phone_number' => NULL,
-            'address' => NULL,
-            'zip_code' => NULL
-        ]);
-        
-        return redirect()->to('/');
-    }
 
     public function get_admin(){
         $title = 'Admins';
@@ -59,7 +47,7 @@ class UserController extends Controller
             'nama' => 'required|string|max:50',
             'email' => 'required|string|max:255|unique:users',
             'password' => 'required|string|min:6',
-            'password_confirmation' => 'required|string|min:6|confirmed',
+            'password_confirmation' => 'required|string|min:6|same:password',
             'role' => 'required',
             'alamat' => 'required|string',
         ]);
@@ -72,7 +60,7 @@ class UserController extends Controller
             'role' => $request->role,
         ]);
         
-        return redirect('/u/admins')->with('success', "Data berhasil diubah");
+        return redirect('/u/admins')->with('success', "Data berhasil tambahkan!");
     }
 
     public function edit_admin($id)

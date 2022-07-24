@@ -25,6 +25,7 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('/', [PageController::class, 'index']);
+Route::get('/news', [PageController::class, 'news']);
 // Route::get('/book', [UserBookController::class, 'index']);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -47,7 +48,7 @@ Route::middleware(['auth', 'role'])->group(function(){
             Route::get('collectors', 'get_collector');
             Route::get('farmers', 'get_farmer');
 
-            Route::post('admins', 'add_admin');
+            Route::post('admins', 'store');
             Route::get('admins/{id}/edit', 'edit_admin');
             Route::put('admins/{id}', 'update_admin');
             

@@ -17,7 +17,7 @@ class RoleMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()->role == 'admin' || Auth::user()->role == 'pasar'){
+        if (Auth::user()->role == 'superadmin' || Auth::user()->role == 'admin' || Auth::user()->role == 'pasar'){
             return $next($request);
         } else {
             return redirect('/');
