@@ -29,7 +29,7 @@ Route::controller(DatasetController::class)->group(function(){
         Route::get('sort_harga/{berita}', 'sort_harga');
         Route::get('probabilitas_kelas', 'probabilitas_kelas');
         Route::get('sampel_data', 'sampel_data');
-        Route::get('ketersediaan', 'ketersediaan');
+        Route::get('ketersediaan', 'ketersediaan'); // untuk halaman HOME -> Volume
     });
 });
 
