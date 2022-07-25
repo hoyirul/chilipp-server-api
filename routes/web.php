@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DatasetController as AdminDatasetController;
+use App\Http\Controllers\Admin\EstimationController as AdminEstimationController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
@@ -68,5 +69,6 @@ Route::middleware(['auth', 'role'])->group(function(){
         });
 
         Route::resource('news', AdminNewsController::class);
+        Route::resource('estimations', AdminEstimationController::class);
     });
 });

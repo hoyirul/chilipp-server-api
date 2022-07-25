@@ -36,6 +36,7 @@ body{
     font-family: var(--regular);
 }
 
+
 /* background */
 .bg-primary{
     background-color: var(--primary-color) !important;

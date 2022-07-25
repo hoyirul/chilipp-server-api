@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\api\DatasetController;
+use App\Http\Controllers\Api\EstimationController;
 use App\Http\Controllers\Api\PredictController;
 use App\Http\Controllers\api\UserController;
 use Illuminate\Http\Request;
@@ -53,3 +54,6 @@ Route::controller(UserController::class)->group(function(){
     Route::post('/login', 'auth');
     Route::post('/register', 'register')->name('register');
 });
+
+// untuk perhitungan (calculator) mengambil data estimasi
+Route::get('/estimasi', [EstimationController::class, 'index']);

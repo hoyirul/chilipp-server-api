@@ -51,4 +51,8 @@ class User extends Authenticatable
     public function news(){
         return $this->hasMany(News::class, 'user_id', 'id');
     }
+
+    public function estimation(){
+        return $this->hasMany(Estimation::class, 'user_id', 'id');
+    }
 }

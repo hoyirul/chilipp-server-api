@@ -46,6 +46,13 @@
         </div>
       </div>
     </li>
+
+    <li class="nav-item active border-top border-bottom">  
+      <a class="nav-link px-5 w-100" href="/u/estimations">
+        <i class="fas fa-fw fa-ship"></i>
+        <span>Estimasi</span>
+      </a>
+    </li>
   @endif
   
   @if (Auth::user()->role == 'superadmin' || Auth::user()->role == 'admin')
